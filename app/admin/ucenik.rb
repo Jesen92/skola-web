@@ -1,6 +1,6 @@
 ActiveAdmin.register Ucenik do
 
-permit_params :ime, :prezime, :OIB, :adresa
+permit_params :name, :OIB, :adresa, :group_id
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -14,5 +14,21 @@ permit_params :ime, :prezime, :OIB, :adresa
 #   permitted
 # end
 
+  index do
+    column :id 
+    column :name, :sortable => :name
+    column :group, :sortable => :group
+    column :created_at, :sortable => :created_at
+    actions
+  end
 
+  form do |f|
+    f.inputs "Details" do
+      f.input :name, :label => "Ime i prezime"
+      f.input :OIB, :label => "OIB"
+      f.input :adresa, :label => "Adresa"
+      f.input :group, :label => "Grupa"
+      f.actions
+    end
+  end
 end
