@@ -41,9 +41,8 @@ permit_params :id, :name, :profesor_id, :level
       row :created_at
       row :updated_at
 
-      section "Popis učenika" do
-        table_for Ucenik.group("id desc")  do 
-          column :id
+      panel "Popis učenika" do
+        table_for group.uceniks do 
           column :name do |ucenik|
            link_to ucenik.name, [:admin, ucenik]
          end
