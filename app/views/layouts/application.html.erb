@@ -10,7 +10,8 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body>
+<body id="<%= params[:controller].parameterize %>_controller" >
+  
 <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -28,10 +29,20 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+                <ul class="nav navbar-nav navbar-right">
+        <% if signed_in? %>
+          <li><%= link_to current_user.email, edit_user_registration_path %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "Admin", admin_root_path %></li>
+    <% else %>
+        <li><%= link_to "Login", new_user_session_path %></li>
+    <% end %>
+      </ul><!-- /.login toolbar -->
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= notice %></p>
 <%= yield %>
 
 </body>

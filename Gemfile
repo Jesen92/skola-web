@@ -16,13 +16,14 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'mysql2'
 gem 'activeadmin', github: 'activeadmin'
-gem 'devise'
 gem 'active_admin_editor'
 gem 'font-awesome-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'devise', '~> 3.4.1'
+gem 'cancancan'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

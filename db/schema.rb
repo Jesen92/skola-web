@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150524093519) do
+ActiveRecord::Schema.define(version: 20150527094736) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -49,6 +49,19 @@ ActiveRecord::Schema.define(version: 20150524093519) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string   "allDay"
+    t.integer  "profesor_id"
+    t.integer  "group_id",     null: false
+    t.boolean  "repeat",       null: false
+    t.date     "repeat_until"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "groups", force: true do |t|
     t.string   "name"
     t.integer  "profesor_id"
@@ -58,8 +71,7 @@ ActiveRecord::Schema.define(version: 20150524093519) do
   end
 
   create_table "profesors", force: true do |t|
-    t.string   "ime"
-    t.string   "prezime"
+    t.string   "name",       limit: 50, null: false
     t.integer  "OIB",        limit: 8
     t.string   "adresa"
     t.string   "jezik"
@@ -68,12 +80,31 @@ ActiveRecord::Schema.define(version: 20150524093519) do
   end
 
   create_table "uceniks", force: true do |t|
-    t.string   "ime"
-    t.string   "prezime"
+    t.string   "name",       limit: 50, null: false
     t.integer  "OIB",        limit: 8
     t.string   "adresa"
+    t.integer  "group_id",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

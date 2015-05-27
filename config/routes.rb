@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
+
+  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords'}
+
+  devise_scope :user do
+    get "login", to: "devise/sessions#new"
+    authenticated :user do
+      root :to => 'home#show', as: :authenticated_root
+    end
+    unauthenticated :user do
+      root :to => 'users/sessions#new', as: :unauthenticated_root
+    end
+  end
+
+  get "users/sign_out" => redirect("devise/sessions#new")
+
   ActiveAdmin.routes(self)
   get 'popis/show'
 
@@ -13,7 +27,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'home#show'
+  root 'home#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
