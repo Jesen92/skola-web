@@ -1,5 +1,18 @@
 ActiveAdmin.register User do
 
+menu label: "Korisnici"
+
+controller do
+ 
+  def update
+    if params[:user][:password].blank?
+      params[:user].delete("password")
+      params[:user].delete("password_confirmation")
+    end
+    super
+  end
+ 
+end
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -12,9 +25,10 @@ ActiveAdmin.register User do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-  permit_params :email, :password, :password_confirmation, :role
+  permit_params :email, :password, :password_confirmation, :role, :profesor_id
  
-    index do
+    index do 
+        column :profesor, :sortable => :profesor
         column :email
         column :current_sign_in_at
         column :last_sign_in_at
@@ -27,6 +41,7 @@ ActiveAdmin.register User do
  
     form do |f|
         f.inputs "User Details" do
+            f.input :profesor, :label => "Ime i prezime"
             f.input :email
             f.input :password
             f.input :password_confirmation
@@ -34,5 +49,20 @@ ActiveAdmin.register User do
         end
         f.actions
     end
+
+
+    show do
+    attributes_table do
+      row :id
+      row :profesor
+      row :email
+      row :current_sign_in_at
+      row :last_sign_in_at
+      row :created_at
+      row :updated_at
+      row :role
+    end
+  end
+
 
 end

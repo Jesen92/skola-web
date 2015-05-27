@@ -1,5 +1,7 @@
 ActiveAdmin.register Group do
 
+menu label: "Grupe"
+
 permit_params :id, :name, :profesor_id, :level
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

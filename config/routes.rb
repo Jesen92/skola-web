@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get "users/sign_out" => redirect("devise/sessions#new")
 
+  get "/home" => 'home#show', :as => :home
+
   ActiveAdmin.routes(self)
   get 'popis/show'
 
