@@ -31,7 +31,7 @@
           </ul>
                 <ul class="nav navbar-nav navbar-right">
         <% if signed_in? %>
-          <li><%= link_to current_user.email, edit_user_registration_path %></li>
+          <li><%= link_to current_user.email, podaci_path %></li>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
           <li><%= link_to "Admin", admin_root_path %></li>
     <% else %>

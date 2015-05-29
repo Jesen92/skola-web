@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # get 'podaci/show'
+
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords'}
 
   devise_scope :user do
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
   end
 
   get "users/sign_out" => redirect("devise/sessions#new")
+
+  get "/podaci" => 'podaci#show', :as => :podaci
 
   get "/home" => 'home#show', :as => :home
 

@@ -11,7 +11,7 @@ default: &default
 
 development:
   <<: *default
-  adapte: mysql2
+  adapter: mysql2
   database: skola_development
   username: jesen
   password: VYFjqwF92

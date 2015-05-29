@@ -71,10 +71,24 @@ ActiveRecord::Schema.define(version: 20150527094736) do
   end
 
   create_table "profesors", force: true do |t|
-    t.string   "name",       limit: 50, null: false
-    t.integer  "OIB",        limit: 8
+    t.string   "name",                limit: 50,  null: false
+    t.integer  "OIB",                 limit: 8
     t.string   "adresa"
     t.string   "jezik"
+    t.boolean  "radi_za_nas"
+    t.text     "komentar"
+    t.boolean  "sudski_tumac"
+    t.string   "mobitel",             limit: 20
+    t.string   "telefon",             limit: 20
+    t.string   "mail",                limit: 30
+    t.string   "obrazovanje",         limit: 100
+    t.string   "karijerska_pozicija", limit: 100
+    t.boolean  "inozemno_iskustvo"
+    t.date     "datum_rodenja",                   null: false
+    t.string   "mjesto_rodenja",      limit: 100, null: false
+    t.string   "postanski_broj",      limit: 5,   null: false
+    t.string   "grad",                limit: 20
+    t.string   "racun_banke",         limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,12 +97,13 @@ ActiveRecord::Schema.define(version: 20150527094736) do
     t.string   "name",       limit: 50, null: false
     t.integer  "OIB",        limit: 8
     t.string   "adresa"
-    t.integer  "group_id",              null: false
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
+    t.integer  "profesor_id"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
