@@ -1,6 +1,6 @@
 ActiveAdmin.register Profesor do
 
-menu label: "Profesori"
+menu label: "Suradnici"
 
  
 
@@ -18,7 +18,7 @@ permit_params :name, :OIB, :adresa, :group, :jezik, :radi_za_nas, :komentar,:sud
 #   permitted
 # end
 
-  form do |f|
+ form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Details" do
       f.input :name, :label => "Ime i prezime"
       f.input :OIB, :label => "OIB"
@@ -38,12 +38,14 @@ permit_params :name, :OIB, :adresa, :group, :jezik, :radi_za_nas, :komentar,:sud
   	  f.input :grad
   	  f.input :postanski_broj
   	  f.input :racun_banke
+  	  f.input :document, :required => false , :as => :file 
 
+  	
       f.actions
     end
   end
 
-index do
+index :title => 'Suradnici' do
 	selectable_column
 	column :name
 	column :OIB
@@ -56,5 +58,37 @@ index do
 	column :inozemno_iskustvo
 	actions
 end
+
+  show do
+    attributes_table do
+      row :name, :label => "Ime i prezime"
+      row :OIB, :label => "OIB"
+      row :adresa, :label => "Adresa"
+      row :jezik
+      row :radi_za_nas
+      row :komentar
+      row :sudski_tumac
+      row :mobitel
+      row :telefon
+      row :mail
+      row :obrazovanje
+      row :karijerska_pozicija
+      row :inozemno_iskustvo
+      row :datum_rodenja, start_year: 1920, end_year: Time.now.year
+      row :mjesto_rodenja
+      row :grad
+      row :postanski_broj
+      row :racun_banke
+      row :document, :required => false , :as => :file 
+
+      panel "Grupe" do
+        table_for profesor.groups do 
+          column :name do |group|
+           link_to group.name, [:admin, group]
+         end
+        end
+      end
+    end
+  end
 
 end

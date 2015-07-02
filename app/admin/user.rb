@@ -27,7 +27,7 @@ end
 # end
   permit_params :email, :password, :password_confirmation, :role, :profesor_id
  
-    index do 
+    index :title => "Korisnici" do 
         column :profesor, :sortable => :profesor
         column :email
         column :current_sign_in_at

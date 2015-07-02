@@ -19,6 +19,7 @@ class CreateProfesors < ActiveRecord::Migration
       t.string	:postanski_broj
       t.string	:grad
       t.string	:racun_banke
+      add_attachment :document
 
       t.timestamps
     end

@@ -16,7 +16,7 @@ permit_params :name, :OIB, :adresa, :group_id
 #   permitted
 # end
 
-  index do
+  index :title => 'Ucenici' do
     column :id 
     column :name, :sortable => :name
     column :group, :sortable => :group

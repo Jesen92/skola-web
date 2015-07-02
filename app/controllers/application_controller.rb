@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+
   def authenticate_active_admin_user!
    authenticate_user!
    unless current_user.role?(:admin)
@@ -11,4 +12,14 @@ class ApplicationController < ActionController::Base
    end
 end
 
+  protected
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      redirect_to login_path, :notice => 'Please Login'
+      ## if you want render 404 page
+      ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
+    end
+  end
 end

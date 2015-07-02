@@ -5,13 +5,14 @@
   <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application','style','jquery-ui', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
 </head>
 <body id="<%= params[:controller].parameterize %>_controller" >
-  
+ 
+ <% if signed_in? %>  
 <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -21,28 +22,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Projekt</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><%= link_to "Home", home_path %></li>
-            <li><a href="#about">About</a></li>
+            <li class="<%= params[:controller] == 'home' ? 'active' : '' %>"><%= link_to "Home", home_path %></li>
+            <li class="<%= params[:controller] == 'mojegrupe' ? 'active' : '' %>"><%= link_to "Moje Grupe", mojegrupe_path %></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
                 <ul class="nav navbar-nav navbar-right">
-        <% if signed_in? %>
           <li><%= link_to current_user.email, podaci_path %></li>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+        <% if current_user.role == "admin" %>
           <li><%= link_to "Admin", admin_root_path %></li>
-    <% else %>
-        <li><%= link_to "Sign in", new_user_session_path %></li>
-    <% end %>
+        <% end %>
       </ul><!-- /.login toolbar -->
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+<% end %>
 <p class="notice"></p>
 <p class="alert"><%= notice %></p>
+
 <%= yield %>
 
 </body>

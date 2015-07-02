@@ -2,6 +2,10 @@ ActiveAdmin.register Event do
 
 menu label: "Predavanja"
 
+ index :title => 'Predavanja' do
+    # ...
+  end
+
 permit_params :title, :start_at, :end_at, :allDay, :profesor_id, :repeat, :repeat_until, :group_id
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'mojegrupe/index' => 'mojegrupe#index', :as => :mojegrupe
+
+  get 'mojegrupe/:id' => 'mojegrupe#show', :as => :grupa
+
+
   # get 'podaci/show'
 
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords'}
@@ -12,7 +17,8 @@ Rails.application.routes.draw do
     unauthenticated :user do
       root :to => 'users/sessions#new', as: :unauthenticated_root
     end
-  end
+
+    root :to => redirect('devise/sessions#new')
 
   get "users/sign_out" => redirect("devise/sessions#new")
 
@@ -27,13 +33,17 @@ Rails.application.routes.draw do
 
   get 'home/show'
 
+
   resources :pages, only: [:show]
+  resources :mojegrupe
+  resources :profesors
+  resources :uceniks
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -83,4 +93,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  end
 end
