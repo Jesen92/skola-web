@@ -3,7 +3,15 @@ ActiveAdmin.register Event do
 menu label: "Predavanja"
 
  index :title => 'Predavanja' do
-    # ...
+    selectable_column
+    column :id
+    column :title, :sortable => :title
+    column :start_at, :sortable => :start_at
+    column :end_at, :sortable => :end_at
+    column :profesor
+    column :group
+    column :created_at
+    actions
   end
 
 permit_params :title, :start_at, :end_at, :allDay, :profesor_id, :repeat, :repeat_until, :group_id
@@ -23,10 +31,10 @@ permit_params :title, :start_at, :end_at, :allDay, :profesor_id, :repeat, :repea
   form do |f|
     f.inputs "Details" do
       f.input :title, :label => "Title"
-      f.input :profesor, :label => "Professor"
-      f.input :group, :label => "Group"
-      f.input :start_at, :label => "Start at"
-      f.input :end_at, :label => "End at"
+      f.input :profesor, :label => "Profesor"
+      f.input :group, :label => "Grupa"
+      f.input :start_at, :label => "Počinje: "
+      f.input :end_at, :label => "Završava"
       f.input :repeat, :label => "Repeat"
       f.input :repeat_until, :label => "Repeat until"
       f.actions

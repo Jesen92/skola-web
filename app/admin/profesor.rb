@@ -18,6 +18,8 @@ permit_params :name, :OIB, :adresa, :group, :jezik, :radi_za_nas, :komentar,:sud
 #   permitted
 # end
 
+
+
  form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs "Details" do
       f.input :name, :label => "Ime i prezime"

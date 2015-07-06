@@ -1,3 +1,4 @@
 class Ucenik < ActiveRecord::Base
-	belongs_to :group
+	has_many :groups, through: :group_uceniks
+	has_many :group_uceniks
 end

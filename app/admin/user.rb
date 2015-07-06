@@ -13,6 +13,8 @@ controller do
   end
  
 end
+
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -28,6 +30,7 @@ end
   permit_params :email, :password, :password_confirmation, :role, :profesor_id
  
     index :title => "Korisnici" do 
+        selectable_column
         column :profesor, :sortable => :profesor
         column :email
         column :current_sign_in_at
@@ -37,7 +40,7 @@ end
         actions
     end
  
-    filter :email
+   # filter :email
  
     form do |f|
         f.inputs "User Details" do

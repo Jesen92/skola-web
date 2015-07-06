@@ -5,20 +5,27 @@ $(document).ready(function() {
 
     $('#calendar').fullCalendar({
         // put your options and callbacks here
+        firstDay: 1,
+        select: function(start, end, allDay)
+            {                       
+                $('#calendar').fullCalendar('gotoDate', start);
+                $('#calendar').fullCalendar('changeView', 'agendaDay'); 
+            },
+
         header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,basicWeek,basicDay'
 			},
 			selectable: true,			
-			editable: true,
+			editable: false,
 			eventLimit: true, // allow "more" link when too many events
 			eventSources: [
 		      {
-		        url: '/events'
+		        url: '/events/get_events'
 		      }
 		    ],
-		    timeFormat: 'h:mm t{ - h:mm t} ',
+		    timeFormat: 'H:mm - ',
 		    dragOpacity: "0.5"
     })
 

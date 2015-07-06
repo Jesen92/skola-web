@@ -16,7 +16,9 @@ permit_params :id, :name, :profesor_id, :level
 #   permitted
 # end
 
+
   index :title => "Grupe" do
+    selectable_column
     column :id 
     column :name, :sortable => :name
     column :profesor, :sortable => :profesor

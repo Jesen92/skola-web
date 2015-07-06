@@ -40,6 +40,11 @@ Rails.application.routes.draw do
   resources :uceniks
   resources :users
 
+  resources :events do
+    get :get_events, on: :collection
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
