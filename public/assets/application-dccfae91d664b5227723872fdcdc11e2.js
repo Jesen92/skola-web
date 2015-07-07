@@ -35924,7 +35924,7 @@ return $.widget( "ui.tabs", {
         return;
       }
       defaults = {
-        dateFormat: 'yy-mm-dd'
+        dateFormat: 'yy/mm/dd'
       };
       options = $input.data('datepicker-options');
       return $input.datepicker($.extend(defaults, options));

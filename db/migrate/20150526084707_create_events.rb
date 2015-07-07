@@ -2,8 +2,10 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string :title
-      t.datetime :start_at
-      t.datetime :end_at
+      t.time :start_time
+      t.time :end_time
+      t.date :start_date
+      t.date :end_date
       t.string :allDay
       t.integer :user_id
       t.integer :recurring_rule

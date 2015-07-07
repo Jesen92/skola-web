@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706133954) do
+ActiveRecord::Schema.define(version: 20150707205924) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -49,15 +49,23 @@ ActiveRecord::Schema.define(version: 20150706133954) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "days", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.string   "title"
-    t.datetime "start_at"
-    t.datetime "end_at"
+    t.string   "start",          limit: 20
+    t.string   "end",            limit: 20
     t.string   "allDay"
+    t.string   "start_date",     limit: 20
+    t.string   "end_date",       limit: 20
+    t.string   "repeat",         limit: 22
     t.integer  "profesor_id"
-    t.integer  "group_id",     null: false
-    t.boolean  "repeat",       null: false
-    t.date     "repeat_until"
+    t.integer  "group_id",                  null: false
+    t.text     "recurring_rule"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -73,6 +81,13 @@ ActiveRecord::Schema.define(version: 20150706133954) do
     t.string   "name"
     t.integer  "profesor_id"
     t.string   "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "picked_days", force: true do |t|
+    t.integer  "day_id"
+    t.integer  "repeat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
