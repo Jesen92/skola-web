@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require moment
+//= require recurring_select
 //= require fullcalendar
 //= require_tree .

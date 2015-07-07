@@ -1,8 +1,11 @@
 class EventsController < ApplicationController
+	include IceCube
+
+	
 	respond_to :json
   	helper_method :current_user
   	before_filter :authenticate_user!
-
+	
 	def get_events
 		@event = current_user.profesor.events
 		

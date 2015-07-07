@@ -24,6 +24,8 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'devise', '~> 3.4.1'
 gem 'cancancan'
+gem 'ice_cube'
+gem 'recurring_select'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 

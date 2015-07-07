@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime :end_at
       t.string :allDay
       t.integer :user_id
+      t.integer :recurring_rule
       t.boolean :repeat
       t.date :repeat_until
 
