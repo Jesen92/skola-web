@@ -6,8 +6,8 @@ menu label: "Predavanja"
     selectable_column
     column :id
     column :title, :sortable => :title
-    column :start_time, :sortable => :start_time
-    column :end_time, :sortable => :end_time
+    column :start, :sortable => :start_time
+    column :end, :sortable => :end_time
     column :start_date
     column :end_date
     column :days
