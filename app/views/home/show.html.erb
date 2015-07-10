@@ -28,14 +28,23 @@ $(document).ready(function() {
 		    timeFormat: 'H:mm - ',
 		    dragOpacity: "0.5",
 
-		    eventRender: function(event){
+		    eventRender: function(event, element){
+ 
     return (event.ranges.filter(function(range){ // test event against all the ranges
-
         return (event.start.isBefore(range.end) &&
                 event.end.isAfter(range.start) );
 
     }).length)>0; //if it isn't in one of the ranges, don't render it (by returning false)
 },
+
+		eventClick:  function(event, jsEvent, view) {
+        //set the values and open the modal
+        var eventsInfo = event.vrijeme+event.grupa+event.mjesto+event.adresa;
+        $("#eventInfo").html(eventsInfo);
+        $("#eventContent").dialog({ modal: true, title: event.title });
+    }
+
+
     })
 
 });
@@ -57,5 +66,7 @@ $(document).ready(function() {
 
 </style>
 <br>
-<h2>Home</h2>
+<div id="eventContent" title="Event Details">
+    <div id="eventInfo"></div>
+</div>
 <div id="calendar"></div>

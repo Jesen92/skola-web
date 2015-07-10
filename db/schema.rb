@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707205924) do
+ActiveRecord::Schema.define(version: 20150710121249) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150707205924) do
     t.string   "allDay"
     t.string   "start_date",     limit: 20
     t.string   "end_date",       limit: 20
-    t.string   "repeat",         limit: 22
+    t.boolean  "repeat"
     t.integer  "profesor_id"
     t.integer  "group_id",                  null: false
     t.text     "recurring_rule"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20150707205924) do
 
   create_table "picked_days", force: true do |t|
     t.integer  "day_id"
-    t.integer  "repeat_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -143,5 +143,12 @@ ActiveRecord::Schema.define(version: 20150707205924) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "wheres", force: true do |t|
+    t.string   "name"
+    t.string   "adress"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

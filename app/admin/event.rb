@@ -10,14 +10,16 @@ menu label: "Predavanja"
     column :end, :sortable => :end_time
     column :start_date
     column :end_date
-    column :days
+    column :where
+
+
     column :profesor
     column :group
     column :created_at
     actions
   end
 
-permit_params :title,:start_time, :end_time, :start_date, :end_date, :allDay, :profesor_id, :repeat, :repeat_until, :group_id, :recurring_rule, day_ids: []
+permit_params :title,:start, :end, :start_date, :end_date, :allDay, :where_id, :profesor_id, :repeat, :repeat_until, :group_id, :recurring_rule, day_ids: []
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -31,16 +33,20 @@ permit_params :title,:start_time, :end_time, :start_date, :end_date, :allDay, :p
 #   permitted
 # end
 
+
 show do
     attributes_table do
       row :id
       row :title
       row :profesor
       row :group
+      row :where
       row :start
       row :end
       row :start_date
-      row :end_date
+
+
+
 
       row :created_at
       row :updated_at
@@ -49,12 +55,16 @@ show do
     end
   end
 
-  sidebar "Tjedno se ponavlja:", only: [:show] do
+  sidebar "Tjedno se ponavlja:", only: [:show], if: proc{event.repeat?} do
     table_for event.days do 
-          column :name do |day|
+          column "Dani ponavljanja", :name do |day|
            day.name
       end
     end
+
+    table_for event do
+      column "Završetak ponavljanja",:end_date 
+    end 
   end
 
 
@@ -63,18 +73,23 @@ show do
       f.input :title, :label => "Title"
       f.input :profesor, :label => "Profesor"
       f.input :group, :label => "Grupa"
-      f.input :start, :label => "Vrijeme početka:",:as => :time_picker
-      f.input :end, :label => "Vrijeme završetka:",:as => :time_picker
+      f.input :start, :label => "Vrijeme početka:", :as => :time_picker
+      f.input :end, :label => "Vrijeme završetka:", :as => :time_picker
+      f.input :where, :label => "Mjesto predavanja",  :as => :select
+
 
       f.input :start_date, :label => "Datum početka:", :as => :datepicker, datepicker_options: { dateFormat: "yy/mm/dd" }
-      f.input :end_date, :label => "Datum završetka:", :as => :datepicker, datepicker_options: { dateFormat: "yy/mm/dd" }
 
-      f.input :days, :as => :check_boxes
+      f.input :repeat,:label => "Tjedno Ponavljanje:" 
+
+
+       f.input :end_date, :label => "Datum završetka ponavljanja:", :as => :datepicker, datepicker_options: { dateFormat: "yy/mm/dd" }
+       f.input :days, :label => "Dani ponavljanja:", :as => :check_boxes
 
       end
-      f.inputs "Ponavljanje" do
-        f.input :recurring_rule, :as=> :select, :input_html => { :class => 'recurring_select'}, :collection => options_for_select([[ "- not recurring -" , "null"],["Set schedule..." , "custom" ]], [ "- not recurring -" , "null"])
-     end
+      #f.inputs "Ponavljanje" do
+      #  f.input :recurring_rule, :as=> :select, :input_html => { :class => 'recurring_select'}, :collection => options_for_select([[ "- not recurring -" , "null"],["Set schedule..." , "custom" ]], [ "- not recurring -" , "null"])
+    # end
       f.actions
   end
 

@@ -28,7 +28,6 @@
           <ul class="nav navbar-nav">
             <li class="<%= params[:controller] == 'home' ? 'active' : '' %>"><%= link_to "Home", home_path %></li>
             <li class="<%= params[:controller] == 'mojegrupe' ? 'active' : '' %>"><%= link_to "Moje Grupe", mojegrupe_path %></li>
-            <li><a href="#contact">Contact</a></li>
           </ul>
                 <ul class="nav navbar-nav navbar-right">
           <li><%= link_to current_user.email, podaci_path %></li>
