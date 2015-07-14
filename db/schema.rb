@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713091905) do
+ActiveRecord::Schema.define(version: 20150714115959) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150713091905) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name_eng",   limit: 11, null: false
   end
 
   create_table "events", force: true do |t|
@@ -60,9 +61,10 @@ ActiveRecord::Schema.define(version: 20150713091905) do
     t.string   "start",          limit: 20
     t.string   "end",            limit: 20
     t.string   "allDay"
-    t.string   "start_date",     limit: 20
-    t.string   "end_date",       limit: 20
+    t.date     "start_date"
+    t.date     "end_date"
     t.boolean  "repeat"
+    t.integer  "br_pred"
     t.integer  "profesor_id"
     t.integer  "group_id"
     t.integer  "where_id"
@@ -117,13 +119,22 @@ ActiveRecord::Schema.define(version: 20150713091905) do
   end
 
   create_table "single_events", force: true do |t|
+    t.integer  "event_id",    null: false
     t.string   "title"
     t.string   "start"
     t.string   "end"
-    t.string   "start_date"
+    t.string   "date"
+    t.boolean  "odrzano",     null: false
     t.integer  "profesor_id"
     t.integer  "group_id"
     t.integer  "where_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ucenik_events", force: true do |t|
+    t.integer  "ucenik_id"
+    t.integer  "single_event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
