@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710121249) do
+ActiveRecord::Schema.define(version: 20150713091905) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -64,7 +64,8 @@ ActiveRecord::Schema.define(version: 20150710121249) do
     t.string   "end_date",       limit: 20
     t.boolean  "repeat"
     t.integer  "profesor_id"
-    t.integer  "group_id",                  null: false
+    t.integer  "group_id"
+    t.integer  "where_id"
     t.text     "recurring_rule"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -111,6 +112,18 @@ ActiveRecord::Schema.define(version: 20150710121249) do
     t.string   "postanski_broj",      limit: 5,   null: false
     t.string   "grad",                limit: 20
     t.string   "racun_banke",         limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "single_events", force: true do |t|
+    t.string   "title"
+    t.string   "start"
+    t.string   "end"
+    t.string   "start_date"
+    t.integer  "profesor_id"
+    t.integer  "group_id"
+    t.integer  "where_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

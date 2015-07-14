@@ -1,5 +1,31 @@
 Rails.application.routes.draw do
 
+  get 'single_event/new'
+
+  get 'single_event/edit'
+
+  get 'single_event/create'
+
+  get 'single_event/destroy'
+
+  get 'single_event/update'
+
+  get 'single_event/index'
+
+  get 'single_event/show'
+
+  get 'new/edit'
+
+  get 'new/create'
+
+  get 'new/destroy'
+
+  get 'new/update'
+
+  get 'new/index'
+
+  get 'new/show'
+
   get 'mojegrupe/index' => 'mojegrupe#index', :as => :mojegrupe
 
   get 'mojegrupe/:id' => 'mojegrupe#show', :as => :grupa
@@ -40,7 +66,7 @@ Rails.application.routes.draw do
   resources :uceniks
   resources :users
 
-  resources :events do
+  resources :single_events do
     get :get_events, on: :collection
   end
 

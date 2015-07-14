@@ -22,20 +22,13 @@ $(document).ready(function() {
 			eventLimit: true, // allow "more" link when too many events
 			eventSources: [
 		      {
-		        url: '/events/get_events'
+		        url: '/single_events/get_events'
 		      }
 		    ],
 		    timeFormat: 'H:mm - ',
 		    dragOpacity: "0.5",
 
-		    eventRender: function(event, element){
- 
-    return (event.ranges.filter(function(range){ // test event against all the ranges
-        return (event.start.isBefore(range.end) &&
-                event.end.isAfter(range.start) );
-
-    }).length)>0; //if it isn't in one of the ranges, don't render it (by returning false)
-},
+		    
 
 		eventClick:  function(event, jsEvent, view) {
         //set the values and open the modal

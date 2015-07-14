@@ -1,15 +1,16 @@
 ActiveAdmin.register Event do
+  controller do
 
-menu label: "Predavanja"
+  end
+menu label: "Tečajevi"
 
- index :title => 'Predavanja' do
+ index :title => 'Tečajevi' do
     selectable_column
     column :id
     column :title, :sortable => :title
     column :start, :sortable => :start_time
     column :end, :sortable => :end_time
     column :start_date
-    column :end_date
     column :where
 
 
@@ -19,7 +20,9 @@ menu label: "Predavanja"
     actions
   end
 
-permit_params :title,:start, :end, :start_date, :end_date, :allDay, :where_id, :profesor_id, :repeat, :repeat_until, :group_id, :recurring_rule, day_ids: []
+
+
+permit_params :title,:start, :end, :br_pred, :start_date, :single_event, :end_date, :allDay, :where_id, :profesor_id, :repeat, :repeat_until, :group_id, :recurring_rule, day_ids: []
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -44,7 +47,7 @@ show do
       row :start
       row :end
       row :start_date
-
+      #row :recurring_rule
 
 
 
@@ -63,7 +66,7 @@ show do
     end
 
     table_for event do
-      column "Završetak ponavljanja",:end_date 
+      column "Broj predavanja",:br_pred 
     end 
   end
 
@@ -78,18 +81,16 @@ show do
       f.input :where, :label => "Mjesto predavanja",  :as => :select
 
 
-      f.input :start_date, :label => "Datum početka:", :as => :datepicker, datepicker_options: { dateFormat: "yy/mm/dd" }
+      f.input :start_date, :label => "Datum početka:", :as => :datepicker
 
       f.input :repeat,:label => "Tjedno Ponavljanje:" 
-
-
-       f.input :end_date, :label => "Datum završetka ponavljanja:", :as => :datepicker, datepicker_options: { dateFormat: "yy/mm/dd" }
-       f.input :days, :label => "Dani ponavljanja:", :as => :check_boxes
+      f.input :br_pred, :label => "Broj predavanja"
+      f.input :days, :label => "Dani ponavljanja:", :as => :check_boxes
 
       end
-      #f.inputs "Ponavljanje" do
-      #  f.input :recurring_rule, :as=> :select, :input_html => { :class => 'recurring_select'}, :collection => options_for_select([[ "- not recurring -" , "null"],["Set schedule..." , "custom" ]], [ "- not recurring -" , "null"])
-    # end
+     # f.inputs "Ponavljanje" do
+     #   f.input :recurring_rule, :as=> :select, :input_html => { :class => 'recurring_select'}, :collection => options_for_select([[ "- not recurring -" , "null"],["Set schedule..." , "custom" ]], [ "- not recurring -" , "null"])
+     # end
       f.actions
   end
 
