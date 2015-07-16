@@ -119,12 +119,12 @@ ActiveRecord::Schema.define(version: 20150714115959) do
   end
 
   create_table "single_events", force: true do |t|
-    t.integer  "event_id",    null: false
+    t.integer  "event_id",                    null: false
     t.string   "title"
     t.string   "start"
     t.string   "end"
     t.string   "date"
-    t.boolean  "odrzano",     null: false
+    t.boolean  "odrzano",     default: false, null: false
     t.integer  "profesor_id"
     t.integer  "group_id"
     t.integer  "where_id"

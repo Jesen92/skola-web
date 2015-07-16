@@ -1,4 +1,3 @@
-
 class SingleEventsController < ApplicationController
 respond_to :json
     helper_method :current_user
@@ -31,6 +30,7 @@ respond_to :json
               @adresa = s_event.where.adress
             end
 
+            @ev = "<p><a href ='/single_event/show."+s_event.id.to_s+"'>Stranica predavanje</a></p>"
 
             if s_event.odrzano? && s_event.date <= Date.today.strftime("%Y-%m-%d")
               @col = "#00FF00"
@@ -43,7 +43,7 @@ respond_to :json
 
 
 
-        events << {:id => s_event.id, :color => @col, :title => s_event.title, :start => s_event.date+" "+s_event.start,:end =>s_event.date+" "+s_event.end, :vrijeme => "<p><strong>"+s_event.start+" - "+s_event.end+"</strong></p>" ,:grupa => "<p><strong>Predavanje grupe:</strong></p> "+"<p>"+@grupa+"</p>", :mjesto => "<p><strong>Mjesto predavanja:</strong></p> "+"<p>"+@mjesto+"</p>", :adresa => "<p><strong>Adresa:</strong></p> "+"<p>"+@adresa+"</p>" }
+        events << {:id => s_event.id, :color => @col, :ev => @ev,:title => s_event.title, :start => s_event.date+" "+s_event.start,:end =>s_event.date+" "+s_event.end, :vrijeme => "<p><strong>"+s_event.start+" - "+s_event.end+"</strong></p>" ,:grupa => "<p><strong>Predavanje grupe:</strong></p> "+"<p>"+@grupa+"</p>", :mjesto => "<p><strong>Mjesto predavanja:</strong></p> "+"<p>"+@mjesto+"</p>", :adresa => "<p><strong>Adresa:</strong></p> "+"<p>"+@adresa+"</p>" }
     #  else 
        # events << {:id => event.id, :title => event.title, :start =>event.start_date.to_s+" "+event.start.to_s,:end =>event.start_date.to_s+" "+event.end.to_s , :vrijeme => "<p><strong>"+event.start+" - "+event.end+"</strong></p>" , :grupa => "<p><strong>Predavanje grupe:</strong></p> "+"<p>"+@grupa+"</p>", :mjesto => "<p><strong>Mjesto predavanja:</strong></p> "+"<p>"+@mjesto+"</p>", :adresa => "<p><strong>Adresa:</strong></p> "+"<p>"+@adresa+"</p>", :ranges => [{:start => "2000-1-1", :end => "3000-1-1"}] }
     #  end
@@ -51,5 +51,40 @@ respond_to :json
   end
     render :text => events.to_json
 end
+
+
+  def index
+    if current_user
+     @events = current_user.profesor.single_events    
+     @user = current_user
+
+    else
+     redirect_to new_user_session_path, notice: 'You are not logged in.'
+    end
+  end
+
+  def show
+    @event = SingleEvent.find(params[:format])
+  end 
+
+  def update
+    @event = SingleEvent.find(params[:id])
+
+    @event.update(event_params)
+
+    flash[:notice] = 'Predavanje izmjenjeno'
+
+    redirect_to single_events_path
+  end
+
+  def edit
+    @event = SingleEvent.find(params[:format])
+  end
+
+  private
+    def event_params
+    params.require(:single_event).permit(:start, :end, :where, :date, :odrzano, :uceniks)
+  end
+
 end
 

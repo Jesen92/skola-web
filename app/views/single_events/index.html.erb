@@ -1,0 +1,12 @@
+<h2>Moja predavanja</h2>
+<% if @user != nil %>
+<% if @events == nil %>
+	<h2>Nema predavanja!</h2>
+<% else %>
+	<% @events.sort_by {|e| e.date}.each do |event| %>
+		<ul>
+			<li><td><%= event.date.to_date.strftime(" %d.%m.%Y.") %> <%= event.start+"-"+event.end %> <%= link_to event.title, event_path(event.id) %></li>
+		</ul>
+	<% end %>
+<% end %>
+<% end %>

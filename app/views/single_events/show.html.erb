@@ -1,0 +1,7 @@
+<h2><%=  @event.title %></h2>
+<ul>
+	<li><%= @event.start %></li>
+	<li><%= @event.end %></li>
+	<li><%= @event.date %></li>
+</ul>
+<p><%= link_to "Edit", edit_event_path(@event.id) %></p>

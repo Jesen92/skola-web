@@ -2,29 +2,13 @@ Rails.application.routes.draw do
 
   get 'single_event/new'
 
-  get 'single_event/edit'
-
-  get 'single_event/create'
-
-  get 'single_event/destroy'
+  get 'single_event/edit' => 'single_events#edit', :as => :edit_event
 
   get 'single_event/update'
 
-  get 'single_event/index'
+  get 'single_event/index' => 'single_events#index', :as => :single_events
 
-  get 'single_event/show'
-
-  get 'new/edit'
-
-  get 'new/create'
-
-  get 'new/destroy'
-
-  get 'new/update'
-
-  get 'new/index'
-
-  get 'new/show'
+  get 'single_event/show' => 'single_events#show', :as => :event
 
   get 'mojegrupe/index' => 'mojegrupe#index', :as => :mojegrupe
 

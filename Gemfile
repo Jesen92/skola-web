@@ -26,6 +26,7 @@ gem 'devise', '~> 3.4.1'
 gem 'cancancan'
 gem 'ice_cube'
 gem 'recurring_select'
+gem 'formtastic'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 

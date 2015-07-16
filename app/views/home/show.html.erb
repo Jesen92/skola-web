@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 		eventClick:  function(event, jsEvent, view) {
         //set the values and open the modal
-        var eventsInfo = event.vrijeme+event.grupa+event.mjesto+event.adresa;
+        var eventsInfo = event.vrijeme+event.grupa+event.mjesto+event.adresa+event.ev;
         $("#eventInfo").html(eventsInfo);
         $("#eventContent").dialog({ modal: true, title: event.title });
     }
