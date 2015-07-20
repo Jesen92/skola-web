@@ -30,7 +30,7 @@ respond_to :json
               @adresa = s_event.where.adress
             end
 
-            @ev = "<p><a href ='/single_event/show."+s_event.id.to_s+"'>Stranica predavanje</a></p>"
+            @ev = "<p><a href ='/single_event/show."+s_event.id.to_s+"'>Stranica predavanja</a></p>"
 
             if s_event.odrzano? && s_event.date <= Date.today.strftime("%Y-%m-%d")
               @col = "#00FF00"
@@ -74,7 +74,7 @@ end
 
     flash[:notice] = 'Predavanje izmjenjeno'
 
-    redirect_to single_events_path
+    redirect_to event_path(params[:id])
   end
 
   def edit
@@ -83,8 +83,12 @@ end
 
   private
     def event_params
-    params.require(:single_event).permit(:start, :end, :where, :date, :odrzano, :uceniks)
+    params.require(:single_event).permit(:start, :end, :where, :date, :odrzano, ucenik_ids: [])
   end
+
+    def press_params
+      params.require(:ucenik_event).permit()
+    end
 
 end
 

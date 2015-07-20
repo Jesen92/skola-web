@@ -1,6 +1,6 @@
 ActiveAdmin.register Group do
 
-menu label: "Grupe"
+menu :label => "Grupe", :priority => 4
 
 permit_params :id, :name, :profesor_id, :level
 # See permitted parameters documentation:
@@ -15,6 +15,8 @@ permit_params :id, :name, :profesor_id, :level
 #   permitted << :other if resource.something?
 #   permitted
 # end
+config.clear_sidebar_sections!
+
 
 
   index :title => "Grupe" do

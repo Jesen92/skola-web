@@ -4,4 +4,10 @@
 	<li><%= @event.end %></li>
 	<li><%= @event.date %></li>
 </ul>
+<h3>Prisutni učenici</h3>
+<ul>
+	<% @event.uceniks.each do |ucenik| %>
+	<li><%= ucenik.name %></li>
+	<% end %>	
+</ul>
 <p><%= link_to "Edit", edit_event_path(@event.id) %></p>

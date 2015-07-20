@@ -1,6 +1,6 @@
 ActiveAdmin.register SingleEvent do
 
-permit_params :odrzano, :title,:start, :end, :br_pred, :ucenik_id, :date, :where_id, :profesor_id, :group_id, :event_id, ucenik_ids: []
+permit_params :odrzano, :title,:start, :ucenik_events, :end, :br_pred, :ucenik_id, :date, :where_id, :profesor_id, :group_id, :event_id, ucenik_ids: []
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -12,14 +12,16 @@ permit_params :odrzano, :title,:start, :end, :br_pred, :ucenik_id, :date, :where
 #   permitted = [:permitted, :attributes]
 #   permitted << :other if resource.something?
 #   permitted
-# end
+# end 
+
+
 config.clear_action_items!
 
 config.per_page = 20
 
 config.sort_order = 'date_asc'
 
-menu label: "Predavanja"
+menu :label => "Predavanja", :priorty => 5
 
  index :title => 'Predavanja' do
     selectable_column

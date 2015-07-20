@@ -12,7 +12,8 @@
  *
  *= require fullcalendar
  *= require recurring_select
- *= require_tree .
+ *= require bootstrap
+ *= require style
  *= require_self
  */
 body {

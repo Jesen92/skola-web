@@ -1,8 +1,8 @@
 ActiveAdmin.register Profesor do
 
-menu label: "Suradnici"
+menu :label => "Suradnici", :priority => 2
 
- 
+
 
 permit_params :name, :OIB, :adresa, :group, :jezik, :radi_za_nas, :komentar,:sudski_tumac,:mobitel,:telefon,:mail,:obrazovanje,:karijerska_pozicija,:inozemno_iskustvo,:datum_rodenja,:mjesto_rodenja,:postanski_broj ,:grad, :racun_banke
 # See permitted parameters documentation:
@@ -17,7 +17,7 @@ permit_params :name, :OIB, :adresa, :group, :jezik, :radi_za_nas, :komentar,:sud
 #   permitted << :other if resource.something?
 #   permitted
 # end
-
+config.clear_sidebar_sections!
 
 
  form :html => { :enctype => "multipart/form-data" } do |f|

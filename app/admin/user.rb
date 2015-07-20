@@ -1,6 +1,8 @@
 ActiveAdmin.register User do
 
-menu label: "Korisnici"
+menu :label => "Korisnici", :priority => 1
+
+config.clear_sidebar_sections!
 
 controller do
  

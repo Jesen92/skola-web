@@ -2,7 +2,8 @@ ActiveAdmin.register Event do
   controller do
 
   end
-menu label: "Tečajevi"
+
+menu :label => "Tečajevi", :priority => 3
 
  index :title => 'Tečajevi' do
     selectable_column
@@ -20,6 +21,7 @@ menu label: "Tečajevi"
     actions
   end
 
+config.clear_sidebar_sections!
 
 
 permit_params :title,:start, :end, :br_pred, :start_date, :single_event, :end_date, :allDay, :where_id, :profesor_id, :repeat, :repeat_until, :group_id, :recurring_rule, day_ids: []
