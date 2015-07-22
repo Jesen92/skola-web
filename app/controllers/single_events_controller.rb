@@ -97,9 +97,15 @@ def get_all_events #JSON zapis predavanja za kalendar(svi user-i)
            elsif s_event.where.id == 4
             @col = "#FFCC00"
            elsif s_event.where.id == 5
-            @col = "#00FFFF"
+            @col = "#00CCFF"
            elsif s_event.where.id == 6
             @col = "#C0C0C0"
+           elsif s_event.where.id == 7
+            @col = "#CC9900"
+           elsif s_event.where.id == 8
+            @col = "#FF00CC"
+           elsif s_event.where.id == 9
+            @col = "#000000"
            end
 
            @profesor = "<p><a href ='/profesors/show."+s_event.profesor.id.to_s+"'>"+s_event.profesor.name+"</a></p>"
