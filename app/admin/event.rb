@@ -21,7 +21,7 @@ menu :label => "Tečajevi", :priority => 3
     actions
   end
 
-config.clear_sidebar_sections!
+
 
 
 permit_params :title,:start, :end, :br_pred, :start_date, :single_event, :end_date, :allDay, :where_id, :profesor_id, :repeat, :repeat_until, :group_id, :recurring_rule, day_ids: []

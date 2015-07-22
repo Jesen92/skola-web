@@ -1,6 +1,6 @@
 ActiveAdmin.register Ucenik do
  
- menu priority: 10
+ 
 
  menu :label => "Ucenici", :priority => 10
 
@@ -17,7 +17,7 @@ permit_params :name, :OIB, :adresa, group_ids: []
 #   permitted << :other if resource.something?
 #   permitted
 # end
-config.clear_sidebar_sections!
+
 
   index :title => 'Ucenici' do
     selectable_column

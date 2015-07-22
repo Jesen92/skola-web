@@ -40,7 +40,6 @@ config.clear_sidebar_sections!
   	  f.input :grad
   	  f.input :postanski_broj
   	  f.input :racun_banke
-  	  f.input :document, :required => false , :as => :file 
 
   	
       f.actions

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'profesors/index'
+
+  get 'profesors/show'
+
+  get 'all_events/show' => 'all_events#show', :as => :all_events
+
   get 'single_event/new'
 
   get 'single_event/edit' => 'single_events#edit', :as => :edit_event
@@ -52,6 +58,7 @@ Rails.application.routes.draw do
 
   resources :single_events do
     get :get_events, on: :collection
+    get :get_all_events, on: :collection
   end
 
 

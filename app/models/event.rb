@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
 	validates :start,:end,:start_date, presence: true
 
 
-    after_create { |event|
+    after_create { |event|  #svako predavanje se pojedinačno zapisuje u bazu
     	@dani = Array.new(7)
     	@i = 0
     	@dani_count = 0

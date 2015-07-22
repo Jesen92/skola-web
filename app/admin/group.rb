@@ -15,7 +15,7 @@ permit_params :id, :name, :profesor_id, :level
 #   permitted << :other if resource.something?
 #   permitted
 # end
-config.clear_sidebar_sections!
+
 
 
 
