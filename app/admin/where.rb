@@ -15,7 +15,7 @@ ActiveAdmin.register Where do
 
 menu :label => "Predavaonice", :priorty => 6
 
- index :title => 'Predavanja' do
+ index :title => 'Predavaonice' do
     selectable_column
     column :id, :sortable => :id
     column :name
