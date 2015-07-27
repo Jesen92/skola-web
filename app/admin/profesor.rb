@@ -17,7 +17,11 @@ permit_params :name, :OIB, :adresa, :group, :jezik, :radi_za_nas, :komentar,:sud
 #   permitted << :other if resource.something?
 #   permitted
 # end
+<<<<<<< HEAD
+
+=======
 config.clear_sidebar_sections!
+>>>>>>> 4a8a0996df53f3a2db426e0ad8538315fc9d0f55
 
 
  form :html => { :enctype => "multipart/form-data" } do |f|

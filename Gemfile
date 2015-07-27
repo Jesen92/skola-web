@@ -27,6 +27,10 @@ gem 'cancancan'
 gem 'ice_cube'
 gem 'recurring_select'
 gem 'formtastic'
+<<<<<<< HEAD
+gem "wice_grid", '3.5.0'
+=======
+>>>>>>> 4a8a0996df53f3a2db426e0ad8538315fc9d0f55
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 

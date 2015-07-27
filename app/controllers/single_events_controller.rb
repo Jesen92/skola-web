@@ -124,7 +124,11 @@ end
     if current_user
      @events = current_user.profesor.single_events    
      @user = current_user
+<<<<<<< HEAD
+     @event_grid = initialize_grid(@events, order: 'single_events.date',order_direction: 'asc')
+=======
 
+>>>>>>> 4a8a0996df53f3a2db426e0ad8538315fc9d0f55
     else
      redirect_to new_user_session_path, notice: 'You are not logged in.'
     end

@@ -15,5 +15,9 @@
 //= require turbolinks
 //= require moment
 //= require recurring_select
+<<<<<<< HEAD
+//= require wice_grid
+=======
+>>>>>>> 4a8a0996df53f3a2db426e0ad8538315fc9d0f55
 //= require fullcalendar
 //= require_tree .

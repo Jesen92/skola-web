@@ -30,6 +30,11 @@ end
 # end
   permit_params :email, :password, :password_confirmation, :role, :profesor_id
  
+<<<<<<< HEAD
+ config.clear_sidebar_sections!
+ 
+=======
+>>>>>>> 4a8a0996df53f3a2db426e0ad8538315fc9d0f55
     index :title => "Korisnici" do 
         selectable_column
         column :profesor, :sortable => :profesor
